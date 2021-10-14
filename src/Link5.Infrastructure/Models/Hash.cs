@@ -2,14 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Link5.Infra.Core.Models
+namespace Link5.Infrastructure.Models
 {
+    [Table("hashes")]
     public class Hash
     {
-        public Hash()
-        {
-        }
-
         [Key]
         [Column("id")]
         public long Id { get; set; }
@@ -27,5 +24,7 @@ namespace Link5.Infra.Core.Models
         [Column("user_id")]
         public long UserId { get; set; }
 
+        [NotMapped]
+        public User User { get; set; }
     }
 }

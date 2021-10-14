@@ -1,0 +1,23 @@
+version: "3.4"
+
+services:
+  pgdatabase:
+    build:
+      context: .
+      dockerfile: _postgres.dockerfile
+    image: link5-db
+    container_name: link-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_DB: "link5"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - link5-network:/var/lib/postgresql/data
+
+volumes:
+  link5-network:
+    driver: local

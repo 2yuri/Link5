@@ -1,15 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Link5.Infra.Core.Models
+namespace Link5.Infrastructure.Models
 {
+    [Table("logs")]
     public class Log
     {
-        public Log()
-        {
-        }
-
         [Key]
         [Column("id")]
         public long Id { get; set; }
@@ -26,5 +24,8 @@ namespace Link5.Infra.Core.Models
         [ForeignKey("Logs")]
         [Column("link_id")]
         public long LinkId { get; set; }
+
+        [NotMapped]
+        public Link Link { get; set; }
     }
 }

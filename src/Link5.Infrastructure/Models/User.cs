@@ -1,16 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Link5.Infra.Core.Models
+namespace Link5.Infrastructure.Models
 {
+    [Table("users")]
     public class User
     {
-        public User()
-        {
-        }
-
         [Key]
         [Column("id")]
         public long Id { get; set; }
@@ -33,13 +31,22 @@ namespace Link5.Infra.Core.Models
         public bool Verified { get; set; }
 
         [DefaultValue(true)]
-        [Column("activated")]
-        public bool Activated { get; set; }
+        [Column("active")]
+        public bool Active { get; set; }
 
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
 
         [Column("Uudated_at")]
         public DateTime UpdatedAt { get; set; }
+
+        [NotMapped]
+        public List<Link> Links { get; set; }
+
+        [NotMapped]
+        public List<Hash> Hashes { get; set; }
+
+        [NotMapped]
+        public Layout Layout { get; set; }
     }
 }
